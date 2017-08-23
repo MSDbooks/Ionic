@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
 /*
   Generated class for the LiveretailProvider provider.
 
@@ -10,14 +11,27 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class LiveretailProvider {
-  private baseApiPath = "http://localhost:50639";
+  /* http://localhost:50639/  
+  https://rest.restoque.com.br/restoquerestfulservice_v2/api/*/
+ 
+  private baseApiPath = "http://localhost:50639/";
   constructor(public http: Http) {
     console.log('Hello LiveretailProvider Provider');
   }
 
-  getDadosVendas(){
-    return this.http.get("http://localhost:50639/api/dados/venda");
+  getDadosVendas() {
+    return this.http.get(this.baseApiPath + "api/dados/venda");
   }
+  getConsultaCLienteVarejo(){
+    return this.http.get(this.baseApiPath + "api/v2/venda/vendacanalmarca");
+  } 
+
+
+
+  getUrl(){
+    return this.baseApiPath;
+  }
+
 
 
 }

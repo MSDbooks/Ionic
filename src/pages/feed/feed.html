@@ -6,25 +6,56 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Vendas</ion-title>
-  </ion-navbar>
+
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list *ngFor="let venda of vendas_retail">
-    <ion-item>
-      <ion-avatar item-start>
-        <img [src]="'http://localhost:50639' +IMG">
-      </ion-avatar>
-      <h2 class="REDE"><strong>Rede: </strong>{{ venda.REDE }}</h2>
-      <h3 class="QLF"><strong>Rede: </strong>{{ venda.QLF }}</h3>     
-      <h3 class="VALORPREVISAO"><strong>Meta: </strong>{{ venda.VALORPREVISAO }}</h3>   
-       <h3 class="VLF"><strong>Venda: </strong>{{ venda.VLF }}</h3>   
-      <h3 class="NUM_CLIENTES"><strong>Clientes: </strong>{{ venda.NUM_CLIENTES }}</h3>
-      <h3 class="NUM_TICKETS"><strong>Tickets: </strong>{{ venda.NUM_TICKETS }}</h3>
-    </ion-item>    
-  </ion-list>
+  <div padding>
+    <ion-segment [(ngModel)]="Vendas">
+      <ion-segment-button value="REDE">
+        REDE
+      </ion-segment-button>
+      <ion-segment-button value="ATACADO">
+        ATACADO
+      </ion-segment-button>
+      <ion-segment-button value="ECOMMERCE">
+        ECOMMERCE
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="Vendas">
+    <ion-list *ngSwitchCase="'REDE'">
+      <ion-list *ngFor="let venda of vendas_retail">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="'http://localhost:50639' +IMG">
+          </ion-avatar>
+          <h2 class="MARCA">Marca:{{ venda.MARCA }}</h2>         
+          
+          
+        </ion-item>
+      </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'ATACADO'">
+      <ion-list *ngFor="let venda of vendas_retail">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img [src]="'http://localhost:50639' +IMG">
+          </ion-thumbnail>
+          <h2 class="REDE"><strong>Rede: </strong>{{ venda.REDE }}</h2>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'ECOMMERCE'">
+
+    </ion-list>
+  </div>
+
+
+
 </ion-content>
